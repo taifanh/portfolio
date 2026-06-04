@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio Kỹ thuật số — [Tên của bạn]</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #111110;
+    --white: #FAFAF8;
+    --gray-100: #F1EFE8;
+    --gray-200: #D3D1C7;
+    --gray-400: #888780;
+    --gray-600: #5F5E5A;
+    --gray-800: #444441;
+    --accent: #185FA5;
+    --accent-light: #E6F1FB;
+    --accent-mid: #B5D4F4;
+    --accent-dark: #0C447C;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--black);
+    background: var(--white);
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(250,250,248,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--gray-200);
+    padding: 0 2rem;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: var(--black);
+    text-decoration: none;
+    letter-spacing: -0.3px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--gray-600);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--black); }
+
+  /* SECTIONS */
+  section {
+    padding: 100px 0 80px;
+    max-width: 780px;
+    margin: 0 auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  section:first-of-type { padding-top: 140px; }
+
+  /* HERO */
+  .hero-label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(42px, 6vw, 64px);
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+    color: var(--black);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gray-400);
+  }
+
+  .hero-desc {
+    font-size: 17px;
+    color: var(--gray-600);
+    max-width: 520px;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag {
+    font-size: 13px;
+    color: var(--accent-dark);
+    background: var(--accent-light);
+    border: 0.5px solid var(--accent-mid);
+    padding: 4px 12px;
+    border-radius: 100px;
+  }
+
+  /* DIVIDER */
+  .section-divider {
+    height: 0.5px;
+    background: var(--gray-200);
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .section-divider::after {
+    content: '';
+    display: block;
+    height: 0.5px;
+    background: var(--gray-200);
+  }
+
+  /* SECTION HEADER */
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .section-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 13px;
+    color: var(--gray-400);
+    min-width: 20px;
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    letter-spacing: -0.5px;
+    color: var(--black);
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .about-grid p {
+    font-size: 15px;
+    color: var(--gray-600);
+    line-height: 1.8;
+  }
+
+  .info-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .info-list li {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .info-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--gray-400);
+  }
+
+  .info-value {
+    font-size: 14px;
+    color: var(--black);
+  }
+
+  /* PROJECTS */
+  .projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    border-top: 0.5px solid var(--gray-200);
+  }
+
+  .project-card {
+    display: grid;
+    grid-template-columns: 48px 1fr auto;
+    gap: 1.5rem;
+    align-items: start;
+    padding: 1.75rem 0;
+    border-bottom: 0.5px solid var(--gray-200);
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.15s;
+    cursor: pointer;
+  }
+
+  .project-card:hover .project-title {
+    color: var(--accent);
+  }
+
+  .project-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 13px;
+    color: var(--gray-400);
+    padding-top: 3px;
+  }
+
+  .project-content {}
+
+  .project-meta {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+
+  .project-title {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--black);
+    margin-bottom: 6px;
+    transition: color 0.2s;
+    line-height: 1.4;
+  }
+
+  .project-desc {
+    font-size: 14px;
+    color: var(--gray-600);
+    line-height: 1.6;
+  }
+
+  .project-attach {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--gray-400);
+    white-space: nowrap;
+    padding-top: 3px;
+  }
+
+  .project-attach svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+
+  .attach-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--accent-dark);
+    background: var(--accent-light);
+    border: 0.5px solid var(--accent-mid);
+    padding: 5px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.15s;
+  }
+
+  .attach-btn:hover { background: var(--accent-mid); }
+
+  /* REFLECTION */
+  .reflection-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 2.5rem;
+  }
+
+  .reflection-card {
+    background: var(--gray-100);
+    border: 0.5px solid var(--gray-200);
+    border-radius: 12px;
+    padding: 1.25rem;
+  }
+
+  .reflection-card-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    margin-bottom: 8px;
+  }
+
+  .reflection-card p {
+    font-size: 14px;
+    color: var(--gray-600);
+    line-height: 1.7;
+  }
+
+  .reflection-main {
+    font-size: 15px;
+    color: var(--gray-600);
+    line-height: 1.85;
+    border-left: 2px solid var(--gray-200);
+    padding-left: 1.25rem;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 0.5px solid var(--gray-200);
+    padding: 2.5rem 2rem;
+    max-width: 780px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  footer p {
+    font-size: 13px;
+    color: var(--gray-400);
+  }
+
+  .footer-link {
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .about-grid, .reflection-grid { grid-template-columns: 1fr; }
+    .project-card { grid-template-columns: 36px 1fr; }
+    .project-attach { display: none; }
+    nav { padding: 0 1rem; }
+    .nav-links { gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <a href="#gioi-thieu" class="nav-logo">[Tên của bạn]</a>
+  <ul class="nav-links">
+    <li><a href="#gioi-thieu">Giới thiệu</a></li>
+    <li><a href="#du-an">Dự án</a></li>
+    <li><a href="#tong-ket">Tổng kết</a></li>
+  </ul>
+</nav>
+
+<!-- SECTION 1: GIỚI THIỆU -->
+<section id="gioi-thieu">
+  <p class="hero-label">Portfolio Kỹ thuật số · 2024–2025</p>
+  <h1 class="hero-title">
+    Xin chào, tôi là<br>
+    <em>[Họ và tên].</em>
+  </h1>
+  <p class="hero-desc">
+    Sinh viên ngành [Tên ngành], [Tên trường]. Portfolio này tập hợp các sản phẩm học tập từ môn Nhập môn Công nghệ số và Ứng dụng Trí tuệ nhân tạo — thể hiện quá trình hình thành kỹ năng số của tôi.
+  </p>
+  <div class="hero-tags">
+    <span class="tag">Công nghệ số</span>
+    <span class="tag">AI trong học tập</span>
+    <span class="tag">[Ngành học của bạn]</span>
+    <span class="tag">[Kỹ năng bạn học được]</span>
+  </div>
+
+  <div style="margin-top: 4rem;">
+    <div class="section-header">
+      <span class="section-num">—</span>
+      <h2 class="section-title" style="font-size: 20px;">Thông tin cá nhân</h2>
+    </div>
+    <div class="about-grid">
+      <p>
+        <!-- Viết 2–3 câu giới thiệu bản thân: bạn đang học gì, mục tiêu học tập, định hướng phát triển cá nhân. -->
+        Tôi đang theo học [ngành] tại [trường]. Mục tiêu của tôi là [mục tiêu học tập và nghề nghiệp]. Portfolio này là nơi tôi lưu trữ và chia sẻ quá trình học tập của mình.
+      </p>
+      <ul class="info-list">
+        <li>
+          <span class="info-label">Họ và tên</span>
+          <span class="info-value">[Họ và tên đầy đủ]</span>
+        </li>
+        <li>
+          <span class="info-label">Ngành học</span>
+          <span class="info-value">[Tên ngành]</span>
+        </li>
+        <li>
+          <span class="info-label">Trường</span>
+          <span class="info-value">[Tên trường]</span>
+        </li>
+        <li>
+          <span class="info-label">Năm học</span>
+          <span class="info-value">Năm [X] · [Năm học 20XX–20XX]</span>
+        </li>
+        <li>
+          <span class="info-label">Mục tiêu Portfolio</span>
+          <span class="info-value">Thể hiện các kỹ năng số đã học</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: DỰ ÁN -->
+<section id="du-an">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Các bài tập hoàn thành</h2>
+  </div>
+
+  <div class="projects-list">
+
+    <!-- BÀI 1 -->
+    <div class="project-card">
+      <span class="project-num">01</span>
+      <div class="project-content">
+        <p class="project-meta">Mục 1.4 · Bài tập 1</p>
+        <h3 class="project-title">Thao tác cơ bản với tệp tin và thư mục</h3>
+        <p class="project-desc">
+          <!-- Tóm tắt ngắn: bạn đã làm gì trong bài này, kết quả đạt được. -->
+          Trình bày cấu trúc thư mục tối ưu và quy tắc đặt tên tệp đã thiết lập, kèm ảnh chụp minh họa.
+        </p>
+        <a href="#" class="attach-btn">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1v10M4 7l4 4 4-4"/><rect x="2" y="12" width="12" height="2" rx="1"/></svg>
+          Xem sản phẩm
+        </a>
+      </div>
+      <span class="project-attach">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 6l-5 5-5-5"/></svg>
+        PDF · Ảnh
+      </span>
+    </div>
+
+    <!-- BÀI 2 -->
+    <div class="project-card">
+      <span class="project-num">02</span>
+      <div class="project-content">
+        <p class="project-meta">Mục 2.4 · Bài tập 2</p>
+        <h3 class="project-title">Tìm kiếm và đánh giá thông tin học thuật</h3>
+        <p class="project-desc">
+          Trình bày kết quả tìm kiếm học thuật bằng các toán tử nâng cao và bảng đánh giá nguồn tin đã thực hiện.
+        </p>
+        <a href="#" class="attach-btn">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1v10M4 7l4 4 4-4"/><rect x="2" y="12" width="12" height="2" rx="1"/></svg>
+          Xem sản phẩm
+        </a>
+      </div>
+      <span class="project-attach">PDF</span>
+    </div>
+
+    <!-- BÀI 3 -->
+    <div class="project-card">
+      <span class="project-num">03</span>
+      <div class="project-content">
+        <p class="project-meta">Mục 3.4 · Bài tập 2</p>
+        <h3 class="project-title">Viết Prompt hiệu quả cho các tác vụ học tập</h3>
+        <p class="project-desc">
+          Trình bày sự so sánh giữa Prompt ban đầu và Prompt cải tiến cùng kết quả đầu ra từ AI.
+        </p>
+        <a href="#" class="attach-btn">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1v10M4 7l4 4 4-4"/><rect x="2" y="12" width="12" height="2" rx="1"/></svg>
+          Xem sản phẩm
+        </a>
+      </div>
+      <span class="project-attach">PDF</span>
+    </div>
+
+    <!-- BÀI 4 -->
+    <div class="project-card">
+      <span class="project-num">04</span>
+      <div class="project-content">
+        <p class="project-meta">Mục 4.4 · Bài tập 2</p>
+        <h3 class="project-title">Sử dụng công cụ hợp tác trực tuyến cho dự án nhóm</h3>
+        <p class="project-desc">
+          Trình bày minh chứng về việc sử dụng công cụ quản lý dự án nhóm và cách thức phối hợp trực tuyến.
+        </p>
+        <a href="#" class="attach-btn">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1v10M4 7l4 4 4-4"/><rect x="2" y="12" width="12" height="2" rx="1"/></svg>
+          Xem sản phẩm
+        </a>
+      </div>
+      <span class="project-attach">Ảnh · Link</span>
+    </div>
+
+    <!-- BÀI 5 -->
+    <div class="project-card">
+      <span class="project-num">05</span>
+      <div class="project-content">
+        <p class="project-meta">Mục 5.4 · Bài tập 2</p>
+        <h3 class="project-title">Sử dụng AI tạo sinh để hỗ trợ sáng tạo nội dung</h3>
+        <p class="project-desc">
+          Trưng bày sản phẩm nội dung số hoàn thiện (hình ảnh, video hoặc bài viết) được hỗ trợ bởi AI.
+        </p>
+        <a href="#" class="attach-btn">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1v10M4 7l4 4 4-4"/><rect x="2" y="12" width="12" height="2" rx="1"/></svg>
+          Xem sản phẩm
+        </a>
+      </div>
+      <span class="project-attach">Video · Ảnh</span>
+    </div>
+
+    <!-- BÀI 6 -->
+    <div class="project-card">
+      <span class="project-num">06</span>
+      <div class="project-content">
+        <p class="project-meta">Mục 6.4 · Bài tập 4</p>
+        <h3 class="project-title">Sử dụng AI có trách nhiệm trong học tập và nghiên cứu</h3>
+        <p class="project-desc">
+          Trình bày bộ nguyên tắc cá nhân về sử dụng AI có trách nhiệm dựa trên các nghiên cứu đã thực hiện.
+        </p>
+        <a href="#" class="attach-btn">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1v10M4 7l4 4 4-4"/><rect x="2" y="12" width="12" height="2" rx="1"/></svg>
+          Xem sản phẩm
+        </a>
+      </div>
+      <span class="project-attach">PDF</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- SECTION 3: TỔNG KẾT -->
+<section id="tong-ket">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Tổng kết & cảm nhận</h2>
+  </div>
+
+  <div class="reflection-grid">
+    <div class="reflection-card">
+      <p class="reflection-card-label">Kỹ năng nổi bật nhất</p>
+      <p>
+        <!-- Viết 1–2 câu về kỹ năng quan trọng nhất bạn học được. -->
+        [Ví dụ: Khả năng tìm kiếm và đánh giá thông tin học thuật một cách có hệ thống.]
+      </p>
+    </div>
+    <div class="reflection-card">
+      <p class="reflection-card-label">Thách thức lớn nhất</p>
+      <p>
+        <!-- Viết 1–2 câu về khó khăn bạn đã vượt qua. -->
+        [Ví dụ: Học cách sử dụng AI một cách có trách nhiệm, tránh phụ thuộc quá mức.]
+      </p>
+    </div>
+    <div class="reflection-card">
+      <p class="reflection-card-label">Điều tâm đắc nhất</p>
+      <p>
+        <!-- Điều bạn thấy có giá trị nhất từ môn học. -->
+        [Ví dụ: Nhận ra tiềm năng của AI như một công cụ hỗ trợ học tập thực sự.]
+      </p>
+    </div>
+    <div class="reflection-card">
+      <p class="reflection-card-label">Định hướng tiếp theo</p>
+      <p>
+        <!-- Bạn sẽ ứng dụng những gì đã học như thế nào? -->
+        [Ví dụ: Tiếp tục xây dựng Portfolio và áp dụng kỹ năng số vào các môn học khác.]
+      </p>
+    </div>
+  </div>
+
+  <p class="reflection-main">
+    <!-- Viết 3–5 câu tổng kết cảm nhận cá nhân về toàn bộ quá trình thực hiện dự án. Nêu những trải nghiệm, kiến thức và kỹ năng bạn đã tích lũy được. -->
+    Qua quá trình thực hiện dự án Portfolio này, tôi đã [cảm nhận chung]. Sáu bài tập đã giúp tôi [những điều học được cụ thể]. Tôi nhận ra rằng [bài học quan trọng nhất]. Trong tương lai, tôi sẽ [định hướng ứng dụng].
+  </p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 [Tên của bạn] · Portfolio Kỹ thuật số</p>
+  <a href="mailto:[email@example.com]" class="footer-link">[email@example.com]</a>
+</footer>
+
+</body>
+</html>
